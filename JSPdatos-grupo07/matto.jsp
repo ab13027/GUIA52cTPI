@@ -14,6 +14,7 @@ String ls_query = "";
 ServletContext context = request.getServletContext();
 String path = context.getRealPath("/data");
 String filePath= path +"\\datos.mdb";
+//String filePath= "c:\\Apache\\Tomcat\\webapps\\GUIA52cTPI\\JSPdatos-grupo07\\data\\datos.mdb";
 String ls_dburl = "jdbc:odbc:Driver={MicroSoft Access Driver (*.mdb)};DBQ="+ filePath;
 String ls_usuario = "";
 String ls_password = "";
@@ -21,7 +22,7 @@ String ls_dbdriver = "sun.jdbc.odbc.JdbcOdbcDriver";
  
 /* Paso 3) Crear query&nbsp; */
 if (ls_action.equals("Crear")) {
-	ls_query = " insert into libros (isbn, titulo)";
+	ls_query = " insert into libros (isbn, titulo,autor)";
 	ls_query += " values (";
 	ls_query += "'" + ls_isbn + "',";
 	ls_query += "'" + ls_titulo + "',";
