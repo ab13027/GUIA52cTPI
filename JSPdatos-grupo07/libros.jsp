@@ -8,43 +8,44 @@
 
 <H1> <a href='libros.jsp?titulo sort=a-z'>MANTENIMIENTO DE LIBROS</a></H1>
 <form action="matto.jsp" method="post" name="Actualizar">
- <table>
- <tr>
- <td>ISBN<input type="text" name="isbn" value="" size="40"/>
-</td>
-  </tr>
- <tr>
- <td>T�tulo<input type="text" name="titulo" value="" size="50"/></td>
+	<table>
+		<tr>
+			<td>ISBN<input type="text" id="isbn" name="isbn" value="" size="40"/></td>
+		</tr>
+		<tr>
+			<td>Título<input type="text" id="titulo" name="titulo" value="" size="50"/></td>
+		</tr>
+		<tr>
+			<td>Autor<input type="text" id="autor" name="autor" value="" size="50"/></td>
+		</tr>
  
- </tr>
- <tr><td> Action <input type="radio" name="Action" value="Actualizar" /> Actualizar
- <input type="radio" name="Action" value="Eliminar" /> Eliminar
- <input type="radio" name="Action" value="Crear" checked /> Crear
-  </td>
- <td><input type="SUBMIT" value="ACEPTAR" />
-</td>
- </tr>
- </form>
- </tr>
- </table>
- </form>
+		<tr>
+			<td> Action: 
+				<input type="radio" name="Action" value="Actualizar" /> Actualizar
+				<input type="radio" name="Action" value="Eliminar" /> Eliminar
+				<input type="radio" name="Action" value="Crear" checked /> Crear
+			</td>
+			<td><input type="SUBMIT" value="ACEPTAR" /></td>
+		</tr>
+	</table>
+</form>
+
 <br><br>
 <%!
 public Connection getConnection( String path) throws SQLException {
-String driver = "sun.jdbc.odbc.JdbcOdbcDriver";
-String filePath= path+"\\datos.mdb";
-String userName="",password="";
-String fullConnectionString = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ=" + filePath;
+	String driver = "sun.jdbc.odbc.JdbcOdbcDriver";
+	String filePath= path+"\\datos.mdb";
+	String userName="",password="";
+	String fullConnectionString = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ=" + filePath;
 
     Connection conn = null;
-try{
+	try{
         Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
- conn = DriverManager.getConnection(fullConnectionString,userName,password);
-
-}
- catch (Exception e) {
-System.out.println("Error: " + e);
- }
+		conn = DriverManager.getConnection(fullConnectionString,userName,password);
+	}
+	catch (Exception e) {
+		System.out.println("Error: " + e);
+	}
     return conn;
 }
 %>
@@ -52,8 +53,8 @@ System.out.println("Error: " + e);
 ServletContext context = request.getServletContext();
 String path = context.getRealPath("/data");
 Connection conexion = getConnection(path);
-   if (!conexion.isClosed()){
-out.write("OK");
+	if (!conexion.isClosed()){
+		out.write("OK");
  
       Statement st = conexion.createStatement();
       ResultSet rs = st.executeQuery("select * from libros" );
